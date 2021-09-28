@@ -14,6 +14,8 @@ namespace Application.Web.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<Paciente, PacienteViewModel>();
+            CreateMap<TipoExame, TipoExameViewModel>();
+            CreateMap<Exame, ExameViewModel>();
         }
     }
 }

@@ -19,6 +19,8 @@ namespace Data.Contexto
         }
 
         public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<TipoExame> TipoExames { get; set; }
+        public DbSet<Exame> Exames { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,6 +45,8 @@ namespace Data.Contexto
 
             //Configuração específica das entidades
             modelBuilder.Configurations.Add(new PacienteConfiguration());
+            modelBuilder.Configurations.Add(new TipoExameConfiguration());
+            modelBuilder.Configurations.Add(new ExameConfiguration());
         }
 
     }

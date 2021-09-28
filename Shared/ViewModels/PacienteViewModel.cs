@@ -11,6 +11,8 @@ namespace Shared.ViewModels
 {
     public class PacienteViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Informe um Nome. É obrigatório!"), MaxLength(100)]
         public string Nome { get; set; }
                 
@@ -20,9 +22,8 @@ namespace Shared.ViewModels
         [RegularExpression(@"(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)", ErrorMessage = "Informe apenas os números do CPF!")]
         public string CPF { get; set; }
 
-        [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Display(Name = "Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
 
         [EnumDataType(typeof(Sexo))]

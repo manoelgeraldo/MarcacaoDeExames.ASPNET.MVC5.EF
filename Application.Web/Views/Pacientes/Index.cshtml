@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Shared.ViewModels.PacienteViewModel>
 
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Paciente";
 }
 
 <h2>Pacientes Cadastrados</h2>
@@ -53,9 +53,9 @@
         @Html.DisplayFor(modelItem => item.Email)
     </td>
     <td>
-        <a class="btn btn-primary" href=@Url.Action("AlterarPaciente", "Pacientes", new { id = item.CPF })>Editar</a>
-        <a class="btn btn-info" href=@Url.Action("VisualizarPaciente", "Pacientes", new { id = item.CPF })>Visualizar</a>
-        <a class="btn btn-danger" href=@Url.Action("ExcluirPaciente", "Pacientes", new { id = item.CPF })>Excluir</a>
+        <a class="btn btn-primary" href=@Url.Action("AlterarPaciente", "Pacientes", new { id = item.Id })>Editar</a>
+        <a class="btn btn-info" href=@Url.Action("VisualizarPaciente", "Pacientes", new { id = item.Id })>Visualizar</a>
+        <a class="btn btn-danger" href=@Url.Action("ExcluirPaciente", "Pacientes", new { id = item.Id })>Excluir</a>
     </td>
 </tr>
 }

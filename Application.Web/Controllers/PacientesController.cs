@@ -50,7 +50,6 @@ namespace Application.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                ValidarCPF(novoPaciente.CPF);
                 var paciente = mapper.Map<PacienteViewModel, Paciente>(novoPaciente);
                 manager.Add(paciente);
                 return RedirectToAction("Index");
