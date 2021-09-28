@@ -21,7 +21,7 @@ namespace Data.Configurations
 
             //Determina que o atributo CPF é Obrigatório.
             Property(c => c.CPF)
-                .IsRequired().HasMaxLength(11);
+                .IsRequired().HasMaxLength(14);
 
             //Determina que o atributo DataNascimento é Opcional.
             Property(c => c.DataNascimento)

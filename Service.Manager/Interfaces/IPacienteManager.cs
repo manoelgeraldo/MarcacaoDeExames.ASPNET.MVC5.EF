@@ -9,6 +9,6 @@ namespace Service.Manager.Interfaces
 {
     public interface IPacienteManager : IServiceManager<Paciente>
     {
-        
+        Paciente VerificaCPF(string cpf);
     }
 }

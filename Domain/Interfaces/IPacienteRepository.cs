@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IPacienteRepository : IRepositoryBase<Paciente>
     {
-        
+        Paciente VerificaCPF(string cpf);
     }
 }

@@ -50,11 +50,28 @@ namespace Application.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                ValidarCPF(novoPaciente.CPF);
                 var paciente = mapper.Map<PacienteViewModel, Paciente>(novoPaciente);
                 manager.Add(paciente);
                 return RedirectToAction("Index");
             }
             return View(novoPaciente);
+        }
+
+        //Verifica se existe CPF cadastrado
+        public ActionResult ValidarCPF(string cpf)
+        {
+            var verificaCPF = manager.VerificaCPF(cpf);
+
+            if(verificaCPF is null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(string.Format("CPF '{0}' já está cadastrado!", cpf), JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         // GET: Pacientes/Edit/5

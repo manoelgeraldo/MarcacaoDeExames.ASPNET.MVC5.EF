@@ -10,6 +10,9 @@ namespace Data.Repositories
 {
     public class PacienteRepository : RepositoryBase<Paciente>, IPacienteRepository
     {
-        
+        public Paciente VerificaCPF(string cpf)
+        {
+            return Db.Set<Paciente>().FirstOrDefault(x => x.CPF == cpf);
+        }
     }
 }

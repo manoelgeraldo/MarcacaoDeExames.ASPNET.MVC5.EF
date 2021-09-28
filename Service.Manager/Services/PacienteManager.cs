@@ -13,5 +13,10 @@ namespace Service.Manager.Services
         {
             this.pacienteRepository = pacienteRepository;
         }
+
+        public Paciente VerificaCPF(string cpf)
+        {
+            return pacienteRepository.VerificaCPF(cpf);
+        }
     }
 }

@@ -11,6 +11,10 @@ namespace Application.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            //Máscaras para campos diversos
+            bundles.Add(new ScriptBundle("~/bundles/jquerymask").Include(
+                        "~/Scripts/jquery.mask.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
