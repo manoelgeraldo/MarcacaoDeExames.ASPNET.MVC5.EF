@@ -1,0 +1,38 @@
+﻿@model Shared.ViewModels.ExameViewModel
+
+@{
+    ViewBag.Title = "Exame";
+}
+
+<h2>Detalhes - Exame</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoExame.Tipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoExame.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-primary" href=@Url.Action("Index", "Exames")>Voltar</a>
+    <a class="btn btn-success" href=@Url.Action("AlterarExame", "Exames", new { id = Model.ExameId })>Editar</a>
+</p>

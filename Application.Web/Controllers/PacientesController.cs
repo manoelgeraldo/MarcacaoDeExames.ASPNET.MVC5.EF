@@ -96,7 +96,7 @@ namespace Application.Web.Controllers
         }
 
         // GET: Pacientes/Delete/5
-        public ActionResult ExcluirPaciente(int id)
+        public ActionResult Excluir(int id)
         {
             var pacienteConsultado = manager.GetById(id);
             var paciente = mapper.Map<Paciente, PacienteViewModel>(pacienteConsultado);
@@ -104,7 +104,7 @@ namespace Application.Web.Controllers
         }
 
         // POST: Pacientes/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Excluir")]
         [ValidateAntiForgeryToken]
         public ActionResult PacienteExcluido(int id)
         {

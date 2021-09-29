@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Shared.ViewModels.ExameViewModel>
+
+@{
+    ViewBag.Title = "Exame";
+}
+
+<h2>Exames Cadastrados</h2>
+
+<p>
+    <a class="btn btn-success" href=@Url.Action("NovoExame", "Exames")>Novo</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayName("Tipo de Exame")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TipoExame.Tipo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Observacao)
+    </td>
+    <td>
+        <a class="btn btn-primary" href=@Url.Action("AlterarExame", "Exames", new { id = item.ExameId })>Editar</a>
+        <a class="btn btn-info" href=@Url.Action("VisualizarExame", "Exames", new { id = item.ExameId })>Visualizar</a>
+        <a class="btn btn-danger" href=@Url.Action("Excluir", "Exames", new { id = item.ExameId })>Excluir</a>
+    </td>
+</tr>
+}
+
+</table>

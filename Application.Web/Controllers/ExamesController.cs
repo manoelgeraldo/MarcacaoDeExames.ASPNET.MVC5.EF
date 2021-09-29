@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Application.Web.AutoMapper;
+using AutoMapper;
 using Domain.Entities;
 using Service.Manager.Interfaces;
 using Shared.ViewModels;
@@ -13,7 +14,15 @@ namespace Application.Web.Controllers
     public class ExamesController : Controller
     {
         private readonly IExameManager manager;
+        private readonly ITipoExameManager managerTipoExame;
         private readonly IMapper mapper;
+
+        public ExamesController(IExameManager manager, ITipoExameManager managerTipoExame)
+        {
+            this.manager = manager;
+            this.managerTipoExame = managerTipoExame;
+            mapper = AutoMapperConfiguration.Mapper;
+        }
 
         // GET: Exames
         public ActionResult Index()
@@ -29,75 +38,79 @@ namespace Application.Web.Controllers
         }
 
         // GET: Exames/Details/5
-        public ActionResult Details(int id)
+        public ActionResult VisualizarExame(int id)
         {
-            return View();
+            var exameConsultado = manager.GetById(id);
+            var exame = mapper.Map<Exame, ExameViewModel>(exameConsultado);
+            return View(exame);
         }
 
         // GET: Exames/Create
-        public ActionResult Create()
+        public ActionResult NovoExame()
         {
+            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             return View();
         }
 
         // POST: Exames/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult NovoExame(ExameViewModel novoExame)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var exame = mapper.Map<ExameViewModel, Exame>(novoExame);
+                manager.Add(exame);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
+            return View(novoExame);
         }
 
         // GET: Exames/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult AlterarExame(int id)
         {
-            return View();
+            var exameConsultado = manager.GetById(id);
+            var exame = mapper.Map<Exame, ExameViewModel>(exameConsultado);
+
+            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", exame.TipoExameId);
+
+            return View(exame);
         }
 
         // POST: Exames/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult AlterarExame(ExameViewModel exameAlterado)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var exame = mapper.Map<ExameViewModel, Exame>(exameAlterado);
+                manager.Update(exame);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.Tipos = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", exameAlterado.TipoExameId);
+            return View(exameAlterado);
         }
 
         // GET: Exames/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Excluir(int id)
         {
-            return View();
+            var exameConsultado = manager.GetById(id);
+            var exame = mapper.Map<Exame, ExameViewModel>(exameConsultado);
+            return View(exame);
         }
 
         // POST: Exames/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Excluir")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExameExcluido(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var exame = manager.GetById(id);
+            manager.Remove(exame);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

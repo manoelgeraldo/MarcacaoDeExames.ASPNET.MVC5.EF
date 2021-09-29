@@ -9,7 +9,7 @@ namespace Shared.ViewModels
 {
     public class TipoExameViewModel
     {
-        public int Id { get; set; }
+        public int TipoExameId { get; set; }
 
         [Display(Name = "Tipo de Exame"), MaxLength(100)]
         [Required(ErrorMessage = "Informe um Tipo. É obrigatório!")]

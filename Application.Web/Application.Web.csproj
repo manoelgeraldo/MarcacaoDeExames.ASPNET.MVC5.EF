@@ -204,13 +204,21 @@
     <Content Include="Views\Pacientes\Index.cshtml" />
     <Content Include="Views\Pacientes\VisualizarPaciente.cshtml" />
     <Content Include="Views\Pacientes\AlterarPaciente.cshtml" />
-    <Content Include="Views\Pacientes\ExcluirPaciente.cshtml" />
+    <Content Include="Views\Pacientes\Excluir.cshtml" />
+    <Content Include="Views\TipoExames\VisualizarTipoExame.cshtml" />
+    <Content Include="Views\TipoExames\Index.cshtml" />
+    <Content Include="Views\TipoExames\NovoTipo.cshtml" />
+    <Content Include="Views\TipoExames\AlterarTipo.cshtml" />
+    <Content Include="Views\TipoExames\Excluir.cshtml" />
+    <Content Include="Views\Exames\Index.cshtml" />
+    <Content Include="Views\Exames\VisualizarExame.cshtml" />
+    <Content Include="Views\Exames\NovoExame.cshtml" />
+    <Content Include="Views\Exames\AlterarExame.cshtml" />
+    <Content Include="Views\Exames\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Exames\" />
-    <Folder Include="Views\TipoExames\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

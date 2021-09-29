@@ -21,16 +21,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href=@Url.Action("Index", "Home") id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Home
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href=@Url.Action("About", "Home")>Sobre</a>
-                            <a class="dropdown-item" href=@Url.Action("Contact", "Home")>Contatos</a>
-                        </div>
-                    </li>
                     <li>@Html.ActionLink("Pacientes", "Index", "Pacientes")</li>
+                    <li>@Html.ActionLink("Exames", "Index", "Exames")</li>
+                    <li>@Html.ActionLink("Tipo de Exames", "Index", "TipoExames")</li>>
                 </ul>
             </div>
         </div>
@@ -38,7 +31,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer class="row justify-content-center ">
+        <footer>
             <div class="col align-center">
                 <p>&copy; @DateTime.Now.Year - Desenvolvido por Manoel Geraldo</p>
             </div>

@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class Paciente
     {
-        public int Id { get; set; }
+        public int PacienteId { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }
         public DateTime DataNascimento { get; set; }

@@ -31,6 +31,10 @@ namespace Data.Contexto
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
+            modelBuilder.Properties()
+                .Where(p => p.Name == p.ReflectedType.Name + "Id")
+                .Configure(p => p.IsKey());
+
             //Configura o tipo de string no db
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasColumnType("varchar"));

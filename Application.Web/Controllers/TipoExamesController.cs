@@ -1,5 +1,8 @@
-﻿using AutoMapper;
+﻿using Application.Web.AutoMapper;
+using AutoMapper;
+using Domain.Entities;
 using Service.Manager.Interfaces;
+using Shared.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,82 +16,86 @@ namespace Application.Web.Controllers
         private readonly ITipoExameManager manager;
         private readonly IMapper mapper;
 
+        public TipoExamesController(ITipoExameManager manager)
+        {
+            this.manager = manager;
+            mapper = AutoMapperConfiguration.Mapper;
+        }
+
         // GET: TipoExames
         public ActionResult Index()
         {
-            return View();
+            var tipos = mapper.Map<IEnumerable<TipoExame>, IEnumerable<TipoExameViewModel>>(manager.GetAll());
+            return View(tipos);
         }
 
         // GET: TipoExames/Details/5
-        public ActionResult Details(int id)
+        public ActionResult VisualizarTipoExame(int id)
         {
-            return View();
+            var tipoConsultado = manager.GetById(id);
+            var tipo = mapper.Map<TipoExame, TipoExameViewModel>(tipoConsultado);
+            return View(tipo);
         }
 
         // GET: TipoExames/Create
-        public ActionResult Create()
+        public ActionResult NovoTipo()
         {
             return View();
         }
 
         // POST: TipoExames/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult NovoTipo(TipoExameViewModel novoTipo)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var tipo = mapper.Map<TipoExameViewModel, TipoExame>(novoTipo);
+                manager.Add(tipo);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(novoTipo);
         }
 
         // GET: TipoExames/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult AlterarTipo(int id)
         {
-            return View();
+            var tipoConsultado = manager.GetById(id);
+            var tipo = mapper.Map<TipoExame, TipoExameViewModel>(tipoConsultado);
+            return View(tipo);
         }
 
         // POST: TipoExames/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult AlterarTipo(TipoExameViewModel tipoAlterado)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var tipo = mapper.Map<TipoExameViewModel, TipoExame>(tipoAlterado);
+                manager.Update(tipo);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(tipoAlterado);
         }
 
         // GET: TipoExames/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Excluir(int id)
         {
-            return View();
+            var tipoConsultado = manager.GetById(id);
+            var tipo = mapper.Map<TipoExame, TipoExameViewModel>(tipoConsultado);
+            return View(tipo);
         }
 
         // POST: TipoExames/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Excluir")]
+        [ValidateAntiForgeryToken]
+        public ActionResult TipoExcluido(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var tipo = manager.GetById(id);
+            manager.Remove(tipo);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

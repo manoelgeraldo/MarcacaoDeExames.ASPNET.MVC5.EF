@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Shared.ViewModels.TipoExameViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tipos de Exames Cadastrados</h2>
+
+<p>
+    <a class="btn btn-success" href=@Url.Action("NovoTipo", "TipoExames")>Novo</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            <a class="btn btn-primary" href=@Url.Action("AlterarTipo", "TipoExames", new { id = item.TipoExameId })>Editar</a>
+            <a class="btn btn-info" href=@Url.Action("VisualizarTipoExame", "TipoExames", new { id = item.TipoExameId })>Visualizar</a>
+            <a class="btn btn-danger" href=@Url.Action("Excluir", "TipoExames", new { id = item.TipoExameId })>Excluir</a>
+        </td>
+    </tr>
+}
+
+</table>

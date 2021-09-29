@@ -1,0 +1,33 @@
+﻿@model Shared.ViewModels.TipoExameViewModel
+
+@{
+    ViewBag.Title = "VisualizarTipoExame";
+}
+
+<h2>Detalhes - Tipos de Exames</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-primary" href=@Url.Action("Index", "TipoExames")>Voltar</a>
+    <a class="btn btn-success" href=@Url.Action("AlterarTipo", "TipoExames", new { id = Model.TipoExameId })>Editar</a>
+</p>

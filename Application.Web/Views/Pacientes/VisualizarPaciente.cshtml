@@ -60,7 +60,7 @@
     </dl>
 </div>
 
-<div class="col-md-offset-2 col-md-10">
+<p>
     <a class="btn btn-primary" href=@Url.Action("Index", "Pacientes")>Voltar</a>
-    <a class="btn btn-success" href=@Url.Action("AlterarPaciente", "Pacientes", new { id = Model.Id })>Editar</a>
-</div>
+    <a class="btn btn-success" href=@Url.Action("AlterarPaciente", "Pacientes", new { id = Model.PacienteId })>Editar</a>
+</p>

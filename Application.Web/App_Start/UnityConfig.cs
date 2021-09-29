@@ -48,9 +48,13 @@ namespace Application.Web
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             container.RegisterType<IPacienteRepository, PacienteRepository>();
+            container.RegisterType<ITipoExameRepository, TipoExameRepository>();
+            container.RegisterType<IExameRepository, ExameRepository>();
 
             container.RegisterType(typeof(IServiceManager<>), typeof(ServiceManager<>));
             container.RegisterType<IPacienteManager, PacienteManager>();
+            container.RegisterType<ITipoExameManager, TipoExameManager>();
+            container.RegisterType<IExameManager, ExameManager>();
         }
         public static void RegisterComponents()
         {

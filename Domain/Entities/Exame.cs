@@ -8,11 +8,11 @@ namespace Domain.Entities
 {
     public class Exame
     {
-        public int Id { get; set; }
+        public int ExameId { get; set; }
         public string Nome { get; set; }
         public string Observacao { get; set; }
 
         public int TipoExameId { get; set; }
-        public TipoExame TipoExame { get; set; }
+        public virtual TipoExame TipoExame { get; set; }
     }
 }

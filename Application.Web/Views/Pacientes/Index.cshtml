@@ -7,7 +7,7 @@
 <h2>Pacientes Cadastrados</h2>
 
 <p>
-    <a class="btn btn-success" href=@Url.Action("NovoPaciente", "Pacientes")>Novo Paciente</a>
+    <a class="btn btn-success" href=@Url.Action("NovoPaciente", "Pacientes")>Novo</a>
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
         @Html.DisplayFor(modelItem => item.Email)
     </td>
     <td>
-        <a class="btn btn-primary" href=@Url.Action("AlterarPaciente", "Pacientes", new { id = item.Id })>Editar</a>
-        <a class="btn btn-info" href=@Url.Action("VisualizarPaciente", "Pacientes", new { id = item.Id })>Visualizar</a>
-        <a class="btn btn-danger" href=@Url.Action("ExcluirPaciente", "Pacientes", new { id = item.Id })>Excluir</a>
+        <a class="btn btn-primary" href=@Url.Action("AlterarPaciente", "Pacientes", new { id = item.PacienteId })>Editar</a>
+        <a class="btn btn-info" href=@Url.Action("VisualizarPaciente", "Pacientes", new { id = item.PacienteId })>Visualizar</a>
+        <a class="btn btn-danger" href=@Url.Action("Excluir", "Pacientes", new { id = item.PacienteId })>Excluir</a>
     </td>
 </tr>
 }

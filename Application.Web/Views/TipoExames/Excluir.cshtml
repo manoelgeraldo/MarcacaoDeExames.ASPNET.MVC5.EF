@@ -1,0 +1,39 @@
+﻿@model Shared.ViewModels.TipoExameViewModel
+
+@{
+    ViewBag.Title = "Tipo";
+}
+
+<h2>Excluir Tipo</h2>
+
+<div>
+    <h4>Você tem certeza que deseja excluir?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            <a class="btn btn-primary" href=@Url.Action("Index", "TipoExames")>Voltar</a>
+        </div>
+    }
+</div>
