@@ -18,6 +18,18 @@ namespace Data.Configurations
 
             //Determina que o atributo HoraConsulta é Obrigatório.
             Property(c => c.HorarioConsulta)
+                .IsRequired().HasColumnType("datetime");
+
+            //Determina que o atributo Id não pode ser Nulo.
+            Property(c => c.PacienteId)
+                .IsRequired();
+
+            //Determina que o atributo Id não pode ser Nulo.
+            Property(c => c.TipoExameId)
+                .IsRequired();
+
+            //Determina que o atributo Id não pode ser Nulo.
+            Property(c => c.ExameId)
                 .IsRequired();
         }
     }

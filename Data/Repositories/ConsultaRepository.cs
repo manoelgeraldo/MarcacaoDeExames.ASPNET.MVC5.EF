@@ -10,6 +10,9 @@ namespace Data.Repositories
 {
     public class ConsultaRepository : RepositoryBase<Consulta>, IConsultaRepository
     {
-        
+        public Consulta VerificarConsulta(string protocolo)
+        {
+            return Db.Set<Consulta>().FirstOrDefault(x => x.Protocolo == protocolo);
+        }
     }
 }

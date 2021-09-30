@@ -9,11 +9,17 @@ namespace Domain.Entities
     public class Consulta
     {
         public int ConsultaId { get; set; }
+
+        public int PacienteId { get; set; }
         public virtual Paciente Paciente { get; set; }
+
+        public int TipoExameId { get; set; }
         public virtual TipoExame TipoExame { get; set; }
+
+        public int ExameId { get; set; }
         public virtual Exame Exame { get; set; }
         public DateTime DataConsulta { get; set; }
         public DateTime HorarioConsulta { get; set; }
-        public int Protocolo { get; set; }
+        public string Protocolo { get; set; }
     }
 }

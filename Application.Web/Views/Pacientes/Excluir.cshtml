@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DataNascimento)
+            @Html.DisplayFor(model => model.DataNascimento.Date)
         </dd>
 
         <dt>
@@ -59,7 +59,7 @@
         </dd>
 
     </dl>
-
+    <br />
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 

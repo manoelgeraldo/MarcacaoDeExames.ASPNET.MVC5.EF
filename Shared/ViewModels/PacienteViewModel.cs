@@ -22,8 +22,8 @@ namespace Shared.ViewModels
         [RegularExpression(@"(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)", ErrorMessage = "Informe apenas os números do CPF!")]
         public string CPF { get; set; }
 
-        [DataType(DataType.Date)]
-        [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date), Display(Name = "Data de Nascimento")]
+        [DisplayFormat(DataFormatString = "{0 dd/MM/yyyy}")]
         public DateTime DataNascimento { get; set; }
 
         [EnumDataType(typeof(Sexo))]

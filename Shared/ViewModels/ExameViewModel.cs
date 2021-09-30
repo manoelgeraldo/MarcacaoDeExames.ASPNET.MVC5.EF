@@ -19,9 +19,10 @@ namespace Shared.ViewModels
         [Display(Name = "Obeservações"), MaxLength(1000)]
         public string Observacao { get; set; }
 
+        [Required(ErrorMessage = "Informe o {0}. É obrigatório!")]
         public int TipoExameId { get; set; }
 
-        [Required(ErrorMessage = "Informe o {0}. É obrigatório!")]
+        [Display(Name = "Tipo de Exame")]
         public virtual  TipoExameViewModel TipoExame { get; set; }
     }
 }

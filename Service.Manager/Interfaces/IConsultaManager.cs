@@ -9,6 +9,6 @@ namespace Service.Manager.Interfaces
 {
     public interface IConsultaManager : IServiceManager<Consulta>
     {
-        
+        Consulta VerificarConsulta(string protocolo);
     }
 }

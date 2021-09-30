@@ -1,0 +1,71 @@
+﻿@model Shared.ViewModels.ConsultaViewModel
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir</h2>
+
+<div>
+    <h4>Você tem certeza que deseja excluir?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Paciente.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoExame.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoExame.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exame.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exame.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataConsulta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataConsulta.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioConsulta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorarioConsulta.TimeOfDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Protocolo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Protocolo)
+        </dd>
+
+    </dl>
+    <br />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            <a class="btn btn-primary" href=@Url.Action("Index", "Consultas")>Voltar</a>
+        </div>
+    }
+</div>

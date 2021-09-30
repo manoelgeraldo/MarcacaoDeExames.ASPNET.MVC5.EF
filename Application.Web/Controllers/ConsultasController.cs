@@ -32,7 +32,11 @@ namespace Application.Web.Controllers
         // GET: Consultas
         public ActionResult Index()
         {
-            var consultas = mapper.Map<IEnumerable<Consulta>, IEnumerable<ConsultaViewModel>>(manager.GetAll());
+            var consultas = mapper.Map<IEnumerable<Consulta>, 
+                                       IEnumerable<ConsultaViewModel>>
+                                       (manager.GetAll()
+                                               .OrderBy(x => x.DataConsulta)
+                                               .ThenBy(x => x.HorarioConsulta));
             return View(consultas);
         }
 
@@ -57,7 +61,18 @@ namespace Application.Web.Controllers
         [HttpPost]
         public ActionResult NovaConsulta(ConsultaViewModel novaConsulta)
         {
-            if (ModelState.IsValid)
+            novaConsulta.Protocolo = String.Concat(Convert.ToString(novaConsulta.DataConsulta.Year),
+                                                   Convert.ToString(novaConsulta.DataConsulta.Day),
+                                                   Convert.ToString(novaConsulta.DataConsulta.Month),
+                                                   Convert.ToString(novaConsulta.HorarioConsulta.TimeOfDay.Hours),
+                                                   Convert.ToString(novaConsulta.HorarioConsulta.TimeOfDay.Minutes),
+                                                   Convert.ToString(novaConsulta.PacienteId),
+                                                   Convert.ToString(novaConsulta.TipoExameId),
+                                                   Convert.ToString(novaConsulta.ExameId));
+            
+            var verificaConsulta = manager.VerificarConsulta(novaConsulta.Protocolo);
+
+            if (verificaConsulta is null & ModelState.IsValid)
             {
                 var consulta = mapper.Map<ConsultaViewModel, Consulta>(novaConsulta);
                 manager.Add(consulta);
@@ -69,6 +84,8 @@ namespace Application.Web.Controllers
             ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome");
 
             return View(novaConsulta);
+
+
         }
 
         // GET: Consultas/Edit/5

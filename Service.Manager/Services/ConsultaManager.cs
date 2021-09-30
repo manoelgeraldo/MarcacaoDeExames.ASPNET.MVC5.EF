@@ -16,5 +16,10 @@ namespace Service.Manager.Services
         {
             this.consultaRepository = consultaRepository;
         }
+
+        public Consulta VerificarConsulta(string protocolo)
+        {
+            return consultaRepository.VerificarConsulta(protocolo);
+        }
     }
 }

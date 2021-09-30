@@ -7,7 +7,7 @@
 <div class="row g-3">
     <div class="col d-flex justify-content-start">
         <h2 class="me-2">Consultas Cadastradas</h2>
-        <a class="btn btn-success m-2" href=@Url.Action("NovaConsulta", "Consulta")>Nova</a>
+        <a class="btn btn-success m-2" href=@Url.Action("NovaConsulta", "Consultas")>Nova</a>
     </div>
 </div>
 
@@ -37,19 +37,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Paciente)
+            @Html.DisplayFor(modelItem => item.Paciente.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TipoExame)
+            @Html.DisplayFor(modelItem => item.TipoExame.Tipo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Exame)
+            @Html.DisplayFor(modelItem => item.Exame.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DataConsulta)
+            @Html.DisplayFor(modelItem => item.DataConsulta.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HorarioConsulta)
+            @Html.DisplayFor(modelItem => item.HorarioConsulta.TimeOfDay)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Protocolo)

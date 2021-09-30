@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IConsultaRepository : IRepositoryBase<Consulta>
     {
-        
+        Consulta VerificarConsulta(string protocolo);
     }
 }
