@@ -13,11 +13,11 @@ namespace Shared.ViewModels
     {
         public int PacienteId { get; set; }
 
-        [Required(ErrorMessage = "Informe um {0}. É obrigatório!"), MaxLength(100)]
+        [Required(ErrorMessage = "Informe o {0}. É obrigatório!"), MaxLength(100)]
         public string Nome { get; set; }
                 
         [MinLength(14), MaxLength(14)]
-        [Required(ErrorMessage = "Informe um {0}. É obrigatório!")]
+        [Required(ErrorMessage = "Informe o {0}. É obrigatório!")]
         [Remote("ValidarCPF", "Pacientes", ErrorMessage = "CPF já cadastrado!")]
         [RegularExpression(@"(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)", ErrorMessage = "Informe apenas os números do CPF!")]
         public string CPF { get; set; }

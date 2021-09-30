@@ -1,14 +1,14 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Repositories
+namespace Domain.Interfaces
 {
-    public class ExameRepository : RepositoryBase<Exame>, IExameRepository
+    public interface IConsultaRepository : IRepositoryBase<Consulta>
     {
+        
     }
 }

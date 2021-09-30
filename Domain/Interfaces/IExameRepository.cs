@@ -9,6 +9,5 @@ namespace Domain.Interfaces
 {
     public interface IExameRepository : IRepositoryBase<Exame>
     {
-        IEnumerable<Exame> ExamesIncluindoTipos();
     }
 }

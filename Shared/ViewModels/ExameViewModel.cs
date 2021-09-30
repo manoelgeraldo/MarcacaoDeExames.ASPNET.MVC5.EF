@@ -13,14 +13,15 @@ namespace Shared.ViewModels
         public int ExameId { get; set; }
 
         [Display(Name = "Nome do Exame"), MaxLength(100)]
-        [Required(ErrorMessage = "Informe um {0}. É obrigatório!")]
+        [Required(ErrorMessage = "Informe o {0}. É obrigatório!")]
         public string Nome { get; set; }
 
         [Display(Name = "Obeservações"), MaxLength(1000)]
         public string Observacao { get; set; }
 
-        [Required(ErrorMessage = "Informe um {0}. É obrigatório!")]
         public int TipoExameId { get; set; }
+
+        [Required(ErrorMessage = "Informe o {0}. É obrigatório!")]
         public virtual  TipoExameViewModel TipoExame { get; set; }
     }
 }

@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public class ExameRepository : RepositoryBase<Exame>, IExameRepository
+    public class ConsultaRepository : RepositoryBase<Consulta>, IConsultaRepository
     {
+        
     }
 }

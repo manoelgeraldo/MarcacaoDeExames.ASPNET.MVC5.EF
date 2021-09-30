@@ -31,12 +31,6 @@ namespace Application.Web.Controllers
             return View(exames);
         }
 
-        public ActionResult ExamesIncluindoTipos()
-        {
-            var exames = mapper.Map<IEnumerable<Exame>, IEnumerable<ExameViewModel>>(manager.ExamesIncluindoTipos());
-            return View(exames);
-        }
-
         // GET: Exames/Details/5
         public ActionResult VisualizarExame(int id)
         {

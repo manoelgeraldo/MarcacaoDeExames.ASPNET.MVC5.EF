@@ -12,7 +12,7 @@ namespace Shared.ViewModels
         public int TipoExameId { get; set; }
 
         [Display(Name = "Tipo de Exame"), MaxLength(100)]
-        [Required(ErrorMessage = "Informe um Tipo. É obrigatório!")]
+        [Required(ErrorMessage = "Informe o {0}. É obrigatório!")]
         public string Tipo { get; set; }
 
         [Display(Name = "Descrição"), MaxLength(256)]

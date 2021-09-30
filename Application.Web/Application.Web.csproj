@@ -153,6 +153,7 @@
     <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\ExamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacientesController.cs" />
@@ -217,10 +218,10 @@
     <Content Include="Views\Exames\NovoExame.cshtml" />
     <Content Include="Views\Exames\AlterarExame.cshtml" />
     <Content Include="Views\Exames\Excluir.cshtml" />
+    <Content Include="Views\Consultas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

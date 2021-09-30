@@ -18,9 +18,5 @@ namespace Service.Manager.Services
             this.exameRepository = exameRepository;
         }
 
-        public IEnumerable<Exame> ExamesIncluindoTipos()
-        {
-            return exameRepository.ExamesIncluindoTipos();
-        }
     }
 }

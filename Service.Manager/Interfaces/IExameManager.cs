@@ -9,6 +9,5 @@ namespace Service.Manager.Interfaces
 {
     public interface IExameManager : IServiceManager<Exame>
     {
-        IEnumerable<Exame> ExamesIncluindoTipos();
     }
 }
