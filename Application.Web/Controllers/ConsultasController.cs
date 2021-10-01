@@ -62,7 +62,19 @@ namespace Application.Web.Controllers
         [HttpPost]
         public ActionResult NovaConsulta(ConsultaViewModel novaConsulta)
         {
-            novaConsulta.Protocolo = String.Concat(Convert.ToString(novaConsulta.DataConsulta.Year),
+
+            var cpfExiste = managerPaciente.VerificaCPF(novaConsulta.Paciente.CPF);
+
+            if (cpfExiste is null)
+            {
+                this.AddNotification("CPF não encontrado! Por favor, cadastrar o paciente!", NotificationType.INFO);
+                return View("~/Views/Pacientes/NovoPaciente");
+            }
+            else
+            {
+                novaConsulta.PacienteId = cpfExiste.PacienteId;
+
+                novaConsulta.Protocolo = String.Concat(Convert.ToString(novaConsulta.DataConsulta.Year),
                                                    Convert.ToString(novaConsulta.DataConsulta.Day),
                                                    Convert.ToString(novaConsulta.DataConsulta.Month),
                                                    Convert.ToString(novaConsulta.HorarioConsulta.Hours),
@@ -70,15 +82,16 @@ namespace Application.Web.Controllers
                                                    Convert.ToString(novaConsulta.PacienteId),
                                                    Convert.ToString(novaConsulta.TipoExameId),
                                                    Convert.ToString(novaConsulta.ExameId));
-            
-            var verificaConsulta = manager.VerificarConsulta(novaConsulta.Protocolo);
+                
+                var consultaExiste = manager.VerificarConsulta(novaConsulta.Protocolo);
 
-            if (verificaConsulta is null & ModelState.IsValid)
-            {
-                var consulta = mapper.Map<ConsultaViewModel, Consulta>(novaConsulta);
-                manager.Add(consulta);
-                this.AddNotification("Consulta agendada com sucesso!", NotificationType.SUCCESS);
-                return RedirectToAction("Index");
+                if (consultaExiste is null & ModelState.IsValid)
+                {
+                    var consulta = mapper.Map<ConsultaViewModel, Consulta>(novaConsulta);
+                    manager.Add(consulta);
+                    this.AddNotification("Consulta agendada com sucesso!", NotificationType.SUCCESS);
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.PacienteId = new SelectList(managerPaciente.GetAll(), "PacienteId", "CPF");
