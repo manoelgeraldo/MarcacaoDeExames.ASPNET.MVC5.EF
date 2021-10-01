@@ -19,7 +19,7 @@ namespace Domain.Entities
         public int ExameId { get; set; }
         public virtual Exame Exame { get; set; }
         public DateTime DataConsulta { get; set; }
-        public DateTime HorarioConsulta { get; set; }
+        public TimeSpan HorarioConsulta { get; set; }
         public string Protocolo { get; set; }
     }
 }

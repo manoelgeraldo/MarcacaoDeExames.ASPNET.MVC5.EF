@@ -34,32 +34,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoExame.Tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Exame.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataConsulta.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HorarioConsulta.TimeOfDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Protocolo)
-        </td>
-        <td>
-            <a class="btn btn-primary" href=@Url.Action("AlterarConsulta", "Consultas", new { id = item.ConsultaId })>Editar</a>
-            <a class="btn btn-info" href=@Url.Action("VisualizarConsulta", "Consultas", new { id = item.ConsultaId })>Visualizar</a>
-            <a class="btn btn-danger" href=@Url.Action("Excluir", "Consultas", new { id = item.ConsultaId })>Excluir</a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoExame.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Exame.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataConsulta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorarioConsulta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Protocolo)
+            </td>
+            <td>
+                <a class="btn btn-primary" href=@Url.Action("AlterarConsulta", "Consultas", new { id = item.ConsultaId })>Editar</a>
+                <a class="btn btn-info" href=@Url.Action("VisualizarConsulta", "Consultas", new { id = item.ConsultaId })>Visualizar</a>
+                <a class="btn btn-danger" href=@Url.Action("Excluir", "Consultas", new { id = item.ConsultaId })>Excluir</a>
+            </td>
+        </tr>
+    }
 
 </table>

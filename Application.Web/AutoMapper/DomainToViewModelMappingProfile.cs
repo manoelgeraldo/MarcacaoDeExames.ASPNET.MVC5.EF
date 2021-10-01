@@ -14,12 +14,8 @@ namespace Application.Web.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<ExameViewModel, Exame>();
-            CreateMap<PacienteViewModel, Paciente>()
-                .ForMember(d => d.DataNascimento, o => o.MapFrom(x => x.DataNascimento.Date.ToString("d")));
-            CreateMap<ConsultaViewModel, Consulta>()
-                .ForMember(d => d.DataConsulta, o => o.MapFrom(x => x.DataConsulta.Date.ToString("d")))
-                .ForMember(d => d.HorarioConsulta, o => o.MapFrom(x => x.HorarioConsulta.ToString("t")));
-
+            CreateMap<PacienteViewModel, Paciente>();
+            CreateMap<ConsultaViewModel, Consulta>();
             CreateMap<TipoExameViewModel, TipoExame>();
         }
     }

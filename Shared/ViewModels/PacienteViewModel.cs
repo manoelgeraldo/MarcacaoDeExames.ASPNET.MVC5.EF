@@ -23,7 +23,7 @@ namespace Shared.ViewModels
         public string CPF { get; set; }
 
         [DataType(DataType.Date), Display(Name = "Data de Nascimento")]
-        [DisplayFormat(DataFormatString = "{0 dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DataNascimento { get; set; }
 
         [EnumDataType(typeof(Sexo))]

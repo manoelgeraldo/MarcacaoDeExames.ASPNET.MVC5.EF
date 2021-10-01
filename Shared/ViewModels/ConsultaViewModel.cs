@@ -26,14 +26,14 @@ namespace Shared.ViewModels
         public virtual ExameViewModel Exame { get; set; }
 
         [DataType(DataType.Date), Display(Name = "Data da Consulta")]
-        [DisplayFormat(DataFormatString = "{0 dd/MM/yyyy}")]
         [Required(ErrorMessage = "Informe a {0}. É obrigatório!")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DataConsulta { get; set; }
 
         [DataType(DataType.Time), Display(Name = "Hora da Consulta")]
-        [DisplayFormat(DataFormatString = "{0 HH:mm}")]
         [Required(ErrorMessage = "Informe a {0}. É obrigatório!")]
-        public DateTime HorarioConsulta { get; set; }
+        [DisplayFormat(DataFormatString = "{0:t}", ApplyFormatInEditMode = true)]
+        public TimeSpan HorarioConsulta { get; set; }
 
         public string Protocolo { get; set; }
     }

@@ -16,5 +16,8 @@ namespace Domain.Entities
         public Sexo Sexo { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
+
+        public int ConsultaId { get; set; }
+        public IEnumerable<Consulta> Consultas { get; set; }
     }
 }

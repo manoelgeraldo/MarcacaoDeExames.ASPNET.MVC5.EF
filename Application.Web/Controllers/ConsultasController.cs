@@ -64,8 +64,8 @@ namespace Application.Web.Controllers
             novaConsulta.Protocolo = String.Concat(Convert.ToString(novaConsulta.DataConsulta.Year),
                                                    Convert.ToString(novaConsulta.DataConsulta.Day),
                                                    Convert.ToString(novaConsulta.DataConsulta.Month),
-                                                   Convert.ToString(novaConsulta.HorarioConsulta.TimeOfDay.Hours),
-                                                   Convert.ToString(novaConsulta.HorarioConsulta.TimeOfDay.Minutes),
+                                                   Convert.ToString(novaConsulta.HorarioConsulta.Hours),
+                                                   Convert.ToString(novaConsulta.HorarioConsulta.Minutes),
                                                    Convert.ToString(novaConsulta.PacienteId),
                                                    Convert.ToString(novaConsulta.TipoExameId),
                                                    Convert.ToString(novaConsulta.ExameId));
