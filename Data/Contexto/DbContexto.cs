@@ -44,9 +44,9 @@ namespace Data.Contexto
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasMaxLength(100));
 
-            //Configura o tamanho do tipo string
-            modelBuilder.Properties<DateTime>()
-                .Configure(p => p.HasColumnType("date"));
+            ////Configura o tamanho do tipo datetime
+            //modelBuilder.Properties<DateTime>()
+            //    .Configure(p => p.HasColumnType("date"));
 
             //Configuração específica das entidades
             modelBuilder.Configurations.Add(new PacienteConfiguration());

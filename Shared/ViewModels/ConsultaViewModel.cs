@@ -25,7 +25,7 @@ namespace Shared.ViewModels
 
         public virtual ExameViewModel Exame { get; set; }
 
-        [DataType(DataType.Date),Display(Name = "Data da Consulta")]
+        [DataType(DataType.Date), Display(Name = "Data da Consulta")]
         [DisplayFormat(DataFormatString = "{0 dd/MM/yyyy}")]
         [Required(ErrorMessage = "Informe a {0}. É obrigatório!")]
         public DateTime DataConsulta { get; set; }

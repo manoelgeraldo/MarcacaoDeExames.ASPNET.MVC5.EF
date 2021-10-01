@@ -83,9 +83,7 @@ namespace Application.Web.Controllers
             ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome");
 
-            return View(novaConsulta);
-
-
+            return View("AlertaConsultaExistente", novaConsulta);
         }
 
         // GET: Consultas/Edit/5
