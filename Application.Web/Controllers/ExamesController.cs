@@ -1,4 +1,5 @@
 ﻿using Application.Web.AutoMapper;
+using Application.Web.Extensions;
 using AutoMapper;
 using Domain.Entities;
 using Service.Manager.Interfaces;
@@ -55,6 +56,7 @@ namespace Application.Web.Controllers
             {
                 var exame = mapper.Map<ExameViewModel, Exame>(novoExame);
                 manager.Add(exame);
+                this.AddNotification("Exame cadastrado com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
             ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
@@ -81,6 +83,7 @@ namespace Application.Web.Controllers
             {
                 var exame = mapper.Map<ExameViewModel, Exame>(exameAlterado);
                 manager.Update(exame);
+                this.AddNotification("Exame alterado com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
@@ -103,6 +106,8 @@ namespace Application.Web.Controllers
         {
             var exame = manager.GetById(id);
             manager.Remove(exame);
+            
+            this.AddNotification("Exame excluído com sucesso!", NotificationType.SUCCESS);
 
             return RedirectToAction("Index");
         }

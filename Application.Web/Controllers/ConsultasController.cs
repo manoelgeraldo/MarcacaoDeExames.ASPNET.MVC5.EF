@@ -1,4 +1,5 @@
 ﻿using Application.Web.AutoMapper;
+using Application.Web.Extensions;
 using AutoMapper;
 using Domain.Entities;
 using Service.Manager.Interfaces;
@@ -76,6 +77,7 @@ namespace Application.Web.Controllers
             {
                 var consulta = mapper.Map<ConsultaViewModel, Consulta>(novaConsulta);
                 manager.Add(consulta);
+                this.AddNotification("Consulta agendada com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
@@ -83,7 +85,8 @@ namespace Application.Web.Controllers
             ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome");
 
-            return View("AlertaConsultaExistente", novaConsulta);
+            this.AddNotification("Já existe Consulta agendada! Por favor, escolha outra data e hora!", NotificationType.ERROR);
+            return View(novaConsulta);
         }
 
         // GET: Consultas/Edit/5
@@ -108,12 +111,14 @@ namespace Application.Web.Controllers
             {
                 var consulta = mapper.Map<ConsultaViewModel, Consulta>(consultaAlterada);
                 manager.Update(consulta);
+                this.AddNotification("Consulta Alterada com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
             ViewBag.PacienteId = new SelectList(managerPaciente.GetAll(), "PacienteId", "CPF", consultaAlterada.PacienteId);
             ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", consultaAlterada.TipoExameId);
             ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome", consultaAlterada.ExameId);
+            this.AddNotification("A consulta não pode ser Alterada!", NotificationType.ERROR);
             return View(consultaAlterada);
         }
 
@@ -132,6 +137,8 @@ namespace Application.Web.Controllers
         {
             var consulta = manager.GetById(id);
             manager.Remove(consulta);
+
+            this.AddNotification("Consulta Excluída com sucesso!", NotificationType.SUCCESS);
 
             return RedirectToAction("Index");
         }

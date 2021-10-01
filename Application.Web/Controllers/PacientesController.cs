@@ -1,4 +1,5 @@
 ﻿using Application.Web.AutoMapper;
+using Application.Web.Extensions;
 using AutoMapper;
 using Domain.Entities;
 using Service.Manager.Interfaces;
@@ -52,8 +53,10 @@ namespace Application.Web.Controllers
             {
                 var paciente = mapper.Map<PacienteViewModel, Paciente>(novoPaciente);
                 manager.Add(paciente);
+                this.AddNotification("Paciente cadastrado com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
+            this.AddNotification("O Paciente não foi cadastrado!", NotificationType.ERROR);
             return View(novoPaciente);
         }
 
@@ -90,8 +93,10 @@ namespace Application.Web.Controllers
             {
                 var paciente = mapper.Map<PacienteViewModel, Paciente>(pacienteAlterado);
                 manager.Update(paciente);
+                this.AddNotification("Paciente Alterado com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
+            this.AddNotification("O Paciente não foi alterado com sucesso!", NotificationType.ERROR);
             return View(pacienteAlterado);
         }
 
@@ -110,7 +115,7 @@ namespace Application.Web.Controllers
         {
             var paciente = manager.GetById(id);
             manager.Remove(paciente);
-
+            this.AddNotification("Paciente excluído com sucesso!", NotificationType.SUCCESS);
             return RedirectToAction("Index");
         }
     }

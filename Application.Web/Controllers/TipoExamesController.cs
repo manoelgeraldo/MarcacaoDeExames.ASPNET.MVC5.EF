@@ -1,4 +1,5 @@
 ﻿using Application.Web.AutoMapper;
+using Application.Web.Extensions;
 using AutoMapper;
 using Domain.Entities;
 using Service.Manager.Interfaces;
@@ -52,6 +53,7 @@ namespace Application.Web.Controllers
             {
                 var tipo = mapper.Map<TipoExameViewModel, TipoExame>(novoTipo);
                 manager.Add(tipo);
+                this.AddNotification("Tipo de Exame cadastrado com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
             return View(novoTipo);
@@ -74,8 +76,10 @@ namespace Application.Web.Controllers
             {
                 var tipo = mapper.Map<TipoExameViewModel, TipoExame>(tipoAlterado);
                 manager.Update(tipo);
+                this.AddNotification("Tipo de Exame alterado com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
+            this.AddNotification("O Tipo de Exame não foi alterado!", NotificationType.ERROR);
             return View(tipoAlterado);
         }
 
@@ -94,7 +98,7 @@ namespace Application.Web.Controllers
         {
             var tipo = manager.GetById(id);
             manager.Remove(tipo);
-
+            this.AddNotification("Tipo de Exame excluído com sucesso!", NotificationType.SUCCESS);
             return RedirectToAction("Index");
         }
     }
