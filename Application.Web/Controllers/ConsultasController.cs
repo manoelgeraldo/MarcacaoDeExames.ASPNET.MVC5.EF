@@ -41,6 +41,14 @@ namespace Application.Web.Controllers
             return View(consultas);
         }
 
+        //Mostra uma lista de CPFs ao digitar no campo
+        [HttpPost]
+        public JsonResult BuscarCPF(string cpf)
+        {
+            var cpfs = (from c in managerPaciente.GetAll() where c.CPF.Contains(cpf) select new { c.CPF });;
+            return Json(cpfs, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Consultas/Details/5
         public ActionResult VisualizarConsulta(int id)
         {

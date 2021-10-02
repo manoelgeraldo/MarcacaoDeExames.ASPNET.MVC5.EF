@@ -69,4 +69,31 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquerymask")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Paciente_CPF").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Consultas/BuscarCPF",
+                        type: "POST",
+                        dataType: "json",
+                        data: { cpf: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Paciente_CPF, value: item.Paciente_CPF };
+                            }))
+                        }
+                    });
+                },
+                messages: {
+                    noResults: "", //results: ""
+                    results: function (count) {
+                        return count + (count > 1 ? ' results' : ' results ') + ' found';
+                    }
+                }
+            });
+        })
+    </script>
 }
