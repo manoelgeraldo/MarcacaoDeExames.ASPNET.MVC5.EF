@@ -68,7 +68,7 @@ namespace Application.Web.Controllers
             if (cpfExiste is null)
             {
                 this.AddNotification("CPF não encontrado! Por favor, cadastrar o paciente!", NotificationType.INFO);
-                return View("~/Views/Pacientes/NovoPaciente");
+                return Redirect("~/Pacientes/NovoPaciente");
             }
             else
             {
