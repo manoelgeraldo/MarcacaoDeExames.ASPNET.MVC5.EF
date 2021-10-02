@@ -22,7 +22,7 @@
 
 ## 4.	Marcação de consulta. O sistema deverá ter a opção de cadastrar uma consulta com as seguintes regras:
 
-- [ ]	Seleção de paciente cadastrado (Consultar por nome ou CPF). Caso não tenha cadastro, deverá exibir uma opção para redirecionar para tela de cadastro.
+- [x]	Seleção de paciente cadastrado (Consultar por nome ou CPF). Caso não tenha cadastro, deverá exibir uma opção para redirecionar para tela de cadastro.
 - [ ]	Campo para seleção de tipo de exame que, após selecionado, irá carregar uma combo com os exames cadastrados para o tipo selecionado.
 - [x]	Deverá ter data e hora e não poderá conflitar horários. Exemplo: Se informar um exame para o dia 23/11/2020 às 8:00 e o mesmo já estiver em uso em uma outra consulta o sistema não deverá permitir.
 - [x]	Gerar número de protocolo único para a consulta	
