@@ -11,15 +11,12 @@ namespace Application.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
-
             //Máscaras para campos diversos
             bundles.Add(new ScriptBundle("~/bundles/jquerymask").Include(
                         "~/Scripts/jquery.mask.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
 
             // Use a versão em desenvolvimento do Modernizr para desenvolver e aprender. Em seguida, quando estiver
             // pronto para a produção, utilize a ferramenta de build em https://modernizr.com para escolher somente os testes que precisa.
@@ -31,8 +28,7 @@ namespace Application.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-litera.css",
-                      "~/Content/site.css",
-                      "~/Content/jquery-ui.css"));
+                      "~/Content/site.css"));
         }
     }
 }
