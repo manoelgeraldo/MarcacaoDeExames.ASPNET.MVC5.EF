@@ -17,8 +17,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Paciente.CPF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Paciente.CPF, new { htmlAttributes = new { @class = "cpf form-control" } })
-                @*@Html.EditorFor(model => model.Paciente.CPF, new { htmlAttributes = new { @class = "cpf form-control" } })*@
+                <input type="text" id="PacienteCPF" class="cpf form-control" />
+                <input type="hidden" id="PacienteId" name="PacienteId" />
                 @Html.ValidationMessageFor(model => model.Paciente.CPF, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +27,6 @@
             @Html.LabelFor(model => model.TipoExame.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TipoExameId", string.Empty)
-                @*@Html.EditorFor(model => model.TipoExameId, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.TipoExame.Tipo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +35,6 @@
             @Html.LabelFor(model => model.Exame.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ExameId", string.Empty)
-                @*@Html.EditorFor(model => model.ExameId, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Exame.Nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,4 +67,39 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquerymask")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+        $(function () {
+            $("#PacienteCPF").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/Consultas/ListaCPF',
+                        data: "{'prefix': '" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item['label'],
+                                    pacienteId: item['value']
+                                }
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#PacienteId").val(i.item.pacienteId);
+                },
+                minLength: 1
+            });
+        });
+    </script>
 }

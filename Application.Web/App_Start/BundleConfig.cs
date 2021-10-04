@@ -11,6 +11,9 @@ namespace Application.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                        "~/Scripts/jquery-ui.js"));
+
             //Máscaras para campos diversos
             bundles.Add(new ScriptBundle("~/bundles/jquerymask").Include(
                         "~/Scripts/jquery.mask.js"));
@@ -28,6 +31,7 @@ namespace Application.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-litera.css",
+                      "~/Content/jquery-ui.css",
                       "~/Content/site.css"));
         }
     }

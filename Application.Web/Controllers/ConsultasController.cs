@@ -58,12 +58,19 @@ namespace Application.Web.Controllers
             return View();
         }
 
+        public JsonResult ListaCPF(string prefix)
+        {
+            var listaCPF = managerPaciente.GetAll().Where(c => c.CPF.Contains(prefix))
+                                          .Select(c => new { label = c.CPF, value = c.PacienteId });
+            return Json(listaCPF, JsonRequestBehavior.AllowGet);
+        }
+
         // POST: Consultas/Create
         [HttpPost]
         public ActionResult NovaConsulta(ConsultaViewModel novaConsulta)
         {
 
-            var cpfExiste = managerPaciente.VerificaCPF(novaConsulta.Paciente.CPF);
+            var cpfExiste = managerPaciente.GetById(novaConsulta.PacienteId);
 
             if (cpfExiste is null)
             {
@@ -72,8 +79,6 @@ namespace Application.Web.Controllers
             }
             else
             {
-                novaConsulta.PacienteId = cpfExiste.PacienteId;
-
                 novaConsulta.Protocolo = String.Concat(Convert.ToString(novaConsulta.DataConsulta.Year),
                                                    Convert.ToString(novaConsulta.DataConsulta.Day),
                                                    Convert.ToString(novaConsulta.DataConsulta.Month),
