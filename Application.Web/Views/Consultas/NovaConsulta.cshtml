@@ -26,7 +26,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TipoExame.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TipoExameId", string.Empty)
+                @if (ViewBag.ListaTipos != null)
+                {
+                    @Html.DropDownListFor(model => model.TipoExameId, ViewBag.ListaTipos as SelectList, "- Selecione -", new { @class = "form-control" })
+                }
                 @Html.ValidationMessageFor(model => model.TipoExame.Tipo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Exame.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ExameId", string.Empty)
+                @Html.DropDownListFor(model => model.ExameId, new SelectList(" "), "- Selecione -", new { @class = "form-control"})
                 @Html.ValidationMessageFor(model => model.Exame.Nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,6 +103,18 @@
                 },
                 minLength: 1
             });
+        });
+
+        $(document).ready(function () {
+            $("#TipoExameId").change(function () {
+                $.get("/Consultas/ListaExame", { TipoExameId: $("#TipoExameId").val() },
+                    function (data) {
+                        $("#ExameId").empty();
+                        $.each(data, function (index, row) {
+                            $("#ExameId").append("<option value='" + row.ExameId + "'>" + row.Nome + "</option>")
+                        });
+                    });
+            })
         });
     </script>
 }

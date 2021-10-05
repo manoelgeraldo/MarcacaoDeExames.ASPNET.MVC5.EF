@@ -43,7 +43,7 @@ namespace Application.Web.Controllers
         // GET: Exames/Create
         public ActionResult NovoExame()
         {
-            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
+            ViewBag.ListaTipo = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace Application.Web.Controllers
                 this.AddNotification("Exame cadastrado com sucesso!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
-            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
+            ViewBag.ListaTipo = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             return View(novoExame);
         }
 
@@ -69,7 +69,7 @@ namespace Application.Web.Controllers
             var exameConsultado = manager.GetById(id);
             var exame = mapper.Map<Exame, ExameViewModel>(exameConsultado);
 
-            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", exame.TipoExameId);
+            ViewBag.ListaTipo = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
 
             return View(exame);
         }
@@ -87,7 +87,7 @@ namespace Application.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Tipos = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", exameAlterado.TipoExameId);
+            ViewBag.ListaTipo = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", exameAlterado.TipoExameId);
             return View(exameAlterado);
         }
 

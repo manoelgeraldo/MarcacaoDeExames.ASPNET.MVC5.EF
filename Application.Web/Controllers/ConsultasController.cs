@@ -52,9 +52,7 @@ namespace Application.Web.Controllers
         // GET: Consultas/Create
         public ActionResult NovaConsulta()
         {
-            ViewBag.PacienteId = new SelectList(managerPaciente.GetAll(), "PacienteId", "CPF");
-            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
-            ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome");
+            ViewBag.ListaTipos = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             return View();
         }
 
@@ -63,6 +61,13 @@ namespace Application.Web.Controllers
             var listaCPF = managerPaciente.GetAll().Where(c => c.CPF.Contains(prefix))
                                           .Select(c => new { label = c.CPF, value = c.PacienteId });
             return Json(listaCPF, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult ListaExame(int TipoExameId)
+        {
+            var listaExames = managerExame.GetAll().Where(e => e.TipoExameId == TipoExameId).ToList();
+            return Json(listaExames, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Consultas/Create
@@ -99,10 +104,6 @@ namespace Application.Web.Controllers
                 }
             }
 
-            ViewBag.PacienteId = new SelectList(managerPaciente.GetAll(), "PacienteId", "CPF");
-            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
-            ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome");
-
             this.AddNotification("Já existe Consulta agendada! Por favor, escolha outra data e hora!", NotificationType.ERROR);
             return View(novaConsulta);
         }
@@ -113,10 +114,7 @@ namespace Application.Web.Controllers
             var verificaConsulta = manager.GetById(id);
             var consulta = mapper.Map<Consulta, ConsultaViewModel>(verificaConsulta);
 
-            ViewBag.PacienteId = new SelectList(managerPaciente.GetAll(), "PacienteId", "CPF", consulta.PacienteId);
-            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", consulta.TipoExameId);
-            ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome", consulta.ExameId);
-
+            ViewBag.ListaTipos = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             return View(consulta);
         }
 
@@ -133,9 +131,7 @@ namespace Application.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PacienteId = new SelectList(managerPaciente.GetAll(), "PacienteId", "CPF", consultaAlterada.PacienteId);
-            ViewBag.TipoExameId = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo", consultaAlterada.TipoExameId);
-            ViewBag.ExameId = new SelectList(managerExame.GetAll(), "ExameId", "Nome", consultaAlterada.ExameId);
+            ViewBag.ListaTipos = new SelectList(managerTipoExame.GetAll(), "TipoExameId", "Tipo");
             this.AddNotification("A consulta não pode ser Alterada!", NotificationType.ERROR);
             return View(consultaAlterada);
         }
