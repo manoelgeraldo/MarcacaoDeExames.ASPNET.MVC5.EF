@@ -1,4 +1,4 @@
-# Aplicação utilizando Asp.net MVC 5 com as seguintes funcionalidades:
+# Aplicação utilizando ASP.NET MVC 5 com as seguintes funcionalidades:
 
 ## 1.	Cadastro de Paciente (CRUD) onde a entidade deve conter as seguintes informações:
 
